@@ -1,8 +1,9 @@
-package com.jerrytest.tests;
+package com.jerrytest.tests.tests;
 
 import com.jerrytest.framework.pages.InventoryPage;
 import com.jerrytest.framework.pages.LoginPage;
-import com.jerrytest.tests.BaseTest;
+import com.jerrytest.tests.base.BaseTest;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

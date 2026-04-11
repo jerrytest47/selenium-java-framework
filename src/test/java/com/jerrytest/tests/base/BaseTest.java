@@ -1,4 +1,4 @@
-package com.jerrytest.tests;
+package com.jerrytest.tests.base;
 
 import com.jerrytest.framework.driver.DriverFactory;
 import com.jerrytest.framework.utils.ConfigReader;
