@@ -5,6 +5,19 @@ target/
 logs/
 *.log
 
+# TestNG output
+test-output/
+
+# Surefire reports (Maven test reports)
+surefire-reports/
+
+# Screenshots (if you add them later)
+screenshots/
+
+# Allure reports (if you add reporting later)
+allure-results/
+allure-report/
+
 # IntelliJ
 .idea/
 *.iml
