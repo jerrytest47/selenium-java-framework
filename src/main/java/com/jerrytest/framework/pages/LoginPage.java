@@ -10,6 +10,13 @@ public class LoginPage extends BasePage {
     private final By errorMessage = By.cssSelector("[data-test='error']");
     private final By productsTitle = By.cssSelector("[data-test='title']");
 
+    public InventoryPage inventoryPageLogin(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
+        clickLogin();
+        return new InventoryPage();
+    }
+    
     public void enterUsername(String username) {
         enterText(usernameInput, username);
     }
