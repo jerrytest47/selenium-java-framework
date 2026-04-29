@@ -3,6 +3,10 @@ package com.jerrytest.framework.driver;
 
 import com.jerrytest.framework.utils.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,16 +18,30 @@ public class DriverFactory {
     private DriverFactory() {
     }
 
+    private static ChromeOptions getChromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("profile.password_manager_leak_detection", false);
+        options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--disable-save-password-bubble");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--guest");
+        options.addArguments("--incognito");
+        return options;
+    }
+    
     public static void initDriver() {
         String browser = ConfigReader.getProperty("browser").toLowerCase();
 
         switch (browser) {
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--start-maximized");
-                driver.set(new ChromeDriver(chromeOptions));
-                break;
+        case "chrome":
+            WebDriverManager.chromedriver().setup();
+            driver.set(new ChromeDriver(getChromeOptions()));
+            break;
 
             default:
                 throw new IllegalArgumentException("Unsupported browser: " + browser);

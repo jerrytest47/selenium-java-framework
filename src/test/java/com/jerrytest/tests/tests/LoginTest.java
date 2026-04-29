@@ -29,4 +29,16 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.getErrorMessage().contains("Username and password do not match"),
                 "Expected login error message was not displayed.");
     }
+    
+
+    @Test
+    public void lockedOutUserLoginTest() {
+        LoginPage loginPage = new LoginPage();
+
+        loginPage.login("locked_out_user", "secret_sauce");
+
+        Assert.assertTrue(loginPage.getErrorMessage().contains("Epic sadface: Sorry, this user has been locked out."),
+                "Expected lockout error message was not displayed.");
+    }
+       
 }
